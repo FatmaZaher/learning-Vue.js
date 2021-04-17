@@ -83,8 +83,8 @@ Vue.component('product', {
         updateProduct: function(index) {
             this.selectedVariant = index
         },
-        addReview: function() {
-            this.reviews.push(productReview)
+        addReview: function(value) {
+            this.reviews.push(value)
         }
     },
     
