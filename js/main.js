@@ -87,6 +87,7 @@ Vue.component('product', {
             this.reviews.push(productReview)
         }
     },
+    
     computed: {
         title() {
             return this.brand + ' ' + this.product 
