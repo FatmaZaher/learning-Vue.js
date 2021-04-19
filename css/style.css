@@ -27,3 +27,32 @@ button{
     height: 30px;
     margin-bottom: 5px;
 }
+.review-form{
+    padding: 30px;
+    border: 1px solid #d8d8d8;
+}
+.review-form label{
+    font-weight: 500;
+    font-size: 16px;
+}
+.review-form input,
+.review-form textarea{
+    border: none;
+    border-bottom: 1px solid #d8d8d8;
+    padding: 10px 5px;
+    outline: none !important;
+    width: 100%;
+}
+.review-form select{
+    width: 50px;
+    border: 1px solid #d8d8d8;
+    outline: none !important;
+    text-align: center;
+}
+.review-form input[type="submit"]{
+    background-color: #1E95EA;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}

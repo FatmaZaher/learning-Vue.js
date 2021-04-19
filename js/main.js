@@ -6,50 +6,53 @@ Vue.component('product', {
         }
     },
     template: `
-    <div class="product row">
-        <div class="col-5">
-            <div class="product-image">
-                <img :src="image" />
-            </div>
+    <div class="product">
+      <div class ="row">
+        <div class="col-5 mb-5">
+              <div class="product-image">
+                  <img :src="image" />
+              </div>
         </div> 
-        <div class="col-7">
-            <div class="product-info">
-                <h1>{{ product }}</h1>
-                <p v-if="inStock">In Stock</p>
-                <p v-else>Out of Stock</p>
-                <p>Shipping: {{ shipping }}</p>
-                <ul>
-                <li v-for="detail in details">{{ detail }}</li>
-                </ul>
+        <div class="col-7 mb-5">
+              <div class="product-info">
+                  <h1>{{ product }}</h1>
+                  <p v-if="inStock">In Stock</p>
+                  <p v-else>Out of Stock</p>
+                  <p>Shipping: {{ shipping }}</p>
+                  <ul>
+                  <li v-for="detail in details">{{ detail }}</li>
+                  </ul>
 
-                <div class="color-box"
-                    v-for="(variant, index) in variants" 
-                    :key="variant.variantId"
-                    :style="{backgroundColor: variant.variantColor}"
-                    @mouseover="updateProduct(index)"
-                    >
-                </div> 
+                  <div class="color-box"
+                      v-for="(variant, index) in variants" 
+                      :key="variant.variantId"
+                      :style="{backgroundColor: variant.variantColor}"
+                      @mouseover="updateProduct(index)"
+                      >
+                  </div> 
 
-                <button v-on:click="addToCart" 
-                :disabled="!inStock"
-                :class="{ disabledButton: !inStock }"
-                >
-                Add to cart
-                </button>
-            </div> 
+                  <button v-on:click="addToCart" 
+                  :disabled="!inStock"
+                  :class="{ disabledButton: !inStock }"
+                  >
+                  Add to cart
+                  </button>
+              </div> 
         </div>
-        <div>
-              <p v-if="!reviews.length">There are no reviews yet.</p>
-              <ul v-else>
-                  <li v-for="(review, index) in reviews" :key="index">
-                    <p>{{ review.name }}</p>
-                    <p>Rating:{{ review.rating }}</p>
-                    <p>{{ review.review }}</p>
-                  </li>
-              </ul>
-          </div>
-         
-         <product-review @review-submitted="addReview"></product-review>
+        <div class="col-12">
+          <p v-if="!reviews.length">There are no reviews yet.</p>
+          <ul v-else>
+              <li v-for="(review, index) in reviews" :key="index">
+                <p>{{ review.name }}</p>
+                <p>Rating:{{ review.rating }}</p>
+                <p>{{ review.review }}</p>
+              </li>
+          </ul>
+        </div>
+        <div class="col-md-5">
+          <product-review @review-submitted="addReview"></product-review>
+        </div>
+      </div>
     </div>
     `,
     data() {
@@ -119,13 +122,13 @@ Vue.component('product-review', {
         </p>
 
         <p>
-          <label for="name">Name:</label>
-          <input id="name" v-model="name">
+          <label for="name">Name:</label><br>
+          <input id="name" v-model="name" placeholder="Your Name">
         </p>
         
         <p>
-          <label for="review">Review:</label>      
-          <textarea id="review" v-model="review"></textarea>
+          <label for="review">Review:</label><br>     
+          <textarea id="review" v-model="review" placeholder="Your Review"></textarea>
         </p>
         
         <p>
