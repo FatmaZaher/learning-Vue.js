@@ -105,40 +105,45 @@ Vue.component('product', {
 })
 Vue.component('product-review', {
     template: `
-      <form class="review-form" @submit.prevent="onSubmit">
-      
-        <p class="error" v-if="errors.length">
-          <b>Please correct the following error(s):</b>
-          <ul>
-            <li v-for="error in errors">{{ error }}</li>
-          </ul>
-        </p>
+    <div class="row">
+      <div class="col-md-5">
+        <form class="review-form" @submit.prevent="onSubmit">
+        
+          <p class="error" v-if="errors.length">
+            <b>Please correct the following error(s):</b>
+            <ul>
+              <li v-for="error in errors">{{ error }}</li>
+            </ul>
+          </p>
 
-        <p>
-          <label for="name">Name:</label><br>
-          <input id="name" v-model="name" placeholder="Your Name">
-        </p>
-        
-        <p>
-          <label for="review">Review:</label><br>     
-          <textarea id="review" v-model="review" placeholder="Your Review"></textarea>
-        </p>
-        
-        <p>
-          <label for="rating">Rating:</label>
-          <select id="rating" v-model.number="rating">
-            <option>5</option>
-            <option>4</option>
-            <option>3</option>
-            <option>2</option>
-            <option>1</option>
-          </select>
-        </p>
-            
-        <p>
-          <input type="submit" value="Submit">  
-        </p>    
-    </form>
+          <p>
+            <label for="name">Name:</label><br>
+            <input id="name" v-model="name" placeholder="Your Name">
+          </p>
+          
+          <p>
+            <label for="review">Review:</label><br>     
+            <textarea id="review" v-model="review" placeholder="Your Review"></textarea>
+          </p>
+          
+          <p>
+            <label for="rating">Rating:</label>
+            <select id="rating" v-model.number="rating">
+              <option>5</option>
+              <option>4</option>
+              <option>3</option>
+              <option>2</option>
+              <option>1</option>
+            </select>
+          </p>
+              
+          <p>
+            <input type="submit" value="Submit">  
+          </p>    
+        </form>
+      </div>
+    </div>
+      
 
     `,
     data() {
