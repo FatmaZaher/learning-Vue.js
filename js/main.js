@@ -39,23 +39,12 @@ Vue.component('product', {
                   </button>
               </div> 
         </div>
+
         <div class="col-12">
-          tabs
-          <product-tabs></product-tabs>
+          <product-tabs :reviews="reviews"></product-tabs>
         </div>
-        <div class="col-12">
-          <p v-if="!reviews.length">There are no reviews yet.</p>
-          <ul v-else>
-              <li v-for="(review, index) in reviews" :key="index">
-                <p>{{ review.name }}</p>
-                <p>Rating:{{ review.rating }}</p>
-                <p>{{ review.review }}</p>
-              </li>
-          </ul>
-        </div>
-        <div class="col-md-5">
-          <product-review @review-submitted="addReview"></product-review>
-        </div>
+
+
       </div>
     </div>
     `,
@@ -182,7 +171,45 @@ Vue.component('product-review', {
     }
   })
   
-var app = new Vue({
+  Vue.component('product-tabs', {
+    props: {
+      reviews: {
+        type: Array,
+        required: true
+      }
+    },
+    template: `
+      <div>
+          <span class="tab" :class="{ activeTab: selectedTab === tab }"
+                v-for="(tab, index) in tabs"
+                @click="selectedTab = tab">{{ tab }}
+          </span>
+          <div class="mt-5" v-show="selectedTab === 'Reviews'">
+            <p v-if="!reviews.length">There are no reviews yet.</p>
+            <ul v-else>
+                <li v-for="review in reviews">
+                  <p>{{ review.name }}</p>
+                  <p>Rating:{{ review.rating }}</p>
+                  <p>{{ review.review }}</p>
+                </li>
+            </ul>
+          </div>
+
+          <div class="mt-5" v-show="selectedTab === 'Make a Review'">
+            <product-review></product-review> 
+          </div>
+      </div>
+      
+    `,
+    data() {
+      return {
+        tabs: ['Reviews', 'Make a Review'],
+        selectedTab: 'Reviews'     
+      }
+    }
+  })
+
+  var app = new Vue({
     el: '#app',  
     data: {
         premium: true,
@@ -193,24 +220,4 @@ var app = new Vue({
             this.cart.push(id)
         }
     }
-   
-})
-
-Vue.component('product-tabs', {
-  template: `
-    <div>
-        <span class="tab" 
-              v-for="(tab, index) in tabs" ,
-              :key="index",
-              @click="selectedTab = tab">
-                {{ tab }}
-        </span>
-    </div>
-  `,
-  data() {
-    return {
-      tabs: ['Reviews', 'Make a Review'],
-      selectedTab: 'Reviews'     
-    }
-  }
-})
+  })

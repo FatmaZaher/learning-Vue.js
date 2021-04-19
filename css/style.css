@@ -56,3 +56,13 @@ button{
     letter-spacing: 2px;
     font-weight: 600;
 }
+.activeTab{
+    background-color: #1E95EA;
+
+    color: #fff;
+    font-weight: 500;
+}
+.tab{
+    padding: 10px;
+    margin-right: 10px;
+}
